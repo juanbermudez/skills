@@ -44,7 +44,6 @@
   color: var(--fs-fg);
   background: color-mix(in srgb, var(--fs-fg) 18%, transparent);
 }
-[data-document-surface] .guide-page { max-width: 46rem; }
 [data-document-surface] .guide-page > h1 {
   font-family: var(--fs-font-body);
   font-size: clamp(1.625rem, 1.4rem + .8vw, 2rem);
