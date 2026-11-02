@@ -1,6 +1,6 @@
 ---
 name: plan-work
-description: Plan a feature, change, migration or research effort and publish it as a reviewable plan artifact. Use when asked to plan, spec, scope, design or break down work; when entering or leaving plan mode; when writing an implementation plan, roadmap, rollout or decision record; or when a plan needs UI mocks, how-it-works diagrams or a bb Drive doc. Its visuals follow stageshow's method: every UI change ships a stageshow stage styled from the product's real tokens, and every behavior change ships a stageshow stage of the flow (an animated-visuals explorable only when the reviewer must operate it).
+description: "Plan a feature, change, migration or research effort and publish it as a reviewable plan artifact. Use when asked to plan, spec, scope, design or break down work; when entering or leaving plan mode; when writing an implementation plan, roadmap, rollout or decision record; or when a plan needs UI mocks, how-it-works diagrams or a bb Drive doc. Its visuals follow stageshow's method: every UI change ships a stageshow stage styled from the product's real tokens, and every behavior change ships a stageshow stage of the flow (an animated-visuals explorable only when the reviewer must operate it)."
 license: MIT
 metadata: { author: Juan Bermudez, version: 0.1.0, requires: guide animated-visuals stageshow studio }
 ---
