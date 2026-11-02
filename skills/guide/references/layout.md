@@ -1,5 +1,7 @@
 # Layout
 
+Read [interface-standard.md](interface-standard.md) before choosing navigation or component styling. Host typography and components override the standalone defaults below.
+
 ## Page anatomy
 
 Use this order:
@@ -34,7 +36,7 @@ Use a skip link when prerequisites exist. Its target begins after the prerequisi
 | Caption and source | `0.8125rem` to `0.875rem` | Never below 11px rendered |
 | Code | `0.875rem` | Wrap where safe |
 
-Use the type tokens supplied by animated-visuals. Keep code and changing numbers in the mono face. The build does not inline font files. When the page is offline, each token falls back to the system font named in its stack.
+Use the type tokens supplied by animated-visuals. Keep code and changing numbers in the mono face. The build inlines the licensed Manrope font and its OFL notice. Other font roles retain their system fallbacks offline. New scaffolded guides opt into the shared document surface through `data-document-surface`; host overrides still win.
 
 ## Responsive rules
 

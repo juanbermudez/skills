@@ -1,0 +1,70 @@
+/* Shared document controls; all color roles follow the active figure/host theme. */
+:root {
+  --doc-control-radius: 6px;
+  --doc-frame-radius: 12px;
+  --doc-frame-band: 4px;
+  --doc-focus: 2px solid var(--fs-fg);
+  --doc-soft-duration: 180ms;
+  --doc-soft-ease: cubic-bezier(.16, 1, .3, 1);
+}
+[data-document-nav-toggle] {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  color: var(--fs-fg);
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-line);
+  border-radius: var(--doc-control-radius);
+  font: inherit;
+}
+[data-document-nav-toggle] svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  transition: transform var(--doc-soft-duration) var(--doc-soft-ease);
+}
+[data-document-nav-toggle][aria-expanded="true"] svg { transform: rotate(180deg); }
+[data-document-navigation] :focus-visible { outline: var(--doc-focus); outline-offset: 3px; }
+[data-document-nav-panel] a[aria-current="page"] { color: var(--fs-fg); }
+@media (prefers-reduced-motion: reduce) {
+  [data-document-navigation] *, [data-document-navigation] *::before { transition: none !important; }
+}
+
+[data-document-surface] {
+  --doc-frame-color: color-mix(in srgb, var(--fs-fg) 7%, var(--fs-bg));
+  font-family: var(--fs-font-body);
+  letter-spacing: .002em;
+  caret-color: var(--fs-fg);
+}
+[data-document-surface] ::selection {
+  color: var(--fs-fg);
+  background: color-mix(in srgb, var(--fs-fg) 18%, transparent);
+}
+[data-document-surface] .guide-page { max-width: 46rem; }
+[data-document-surface] .guide-page > h1 {
+  font-family: var(--fs-font-body);
+  font-size: clamp(1.625rem, 1.4rem + .8vw, 2rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: .008em;
+}
+[data-document-surface] .guide-page > section > h2 { font-size: 1.75rem; line-height: 1.3; letter-spacing: .008em; }
+[data-document-surface] .guide-page p { font-size: 1.0625rem; line-height: 1.65; }
+[data-document-surface] .guide-page > section { margin-top: 4rem; }
+[data-document-surface] .fs-plate {
+  border: var(--doc-frame-band) solid var(--doc-frame-color);
+  border-radius: var(--doc-frame-radius);
+  box-shadow: none;
+  overflow: hidden;
+}
+[data-document-surface] .fs-title { font-family: var(--fs-font-body); }
+[data-document-surface] .guide-page button { min-height: 44px; border-radius: var(--doc-control-radius); }
+[data-document-surface] :focus-visible { outline: var(--doc-focus); outline-offset: 3px; }
+@media (max-width: 640px) {
+  [data-document-surface] .guide-page p { font-size: 1rem; }
+  [data-document-surface] .guide-page > section > h2 { font-size: 1.5rem; }
+}

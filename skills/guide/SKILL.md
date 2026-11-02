@@ -2,13 +2,22 @@
 name: guide
 description: Create one self-contained HTML guide that explains a topic, paper, codebase, or decision in plain practical language with verified claims and live figures. Use it for a durable explanation or reference-quality walkthrough; for lessons, video or teaching from scratch use teach-me; guide explains, in a practical voice, in one file.
 license: MIT
-compatibility: Requires the animated-visuals skill (same repository) for figures
-metadata: { author: Juan Bermudez, version: 0.2.0 }
+metadata: { author: Juan Bermudez, version: 0.2.0, requires: animated-visuals }
 ---
 
 # Guide
 
 Turn one subject into one self-contained HTML file. Carry one example through the page. Verify every factual claim and figure.
+
+## Interface and publishing ownership
+
+Before styling navigation, menus, controls, document lists, or a document reader, read [references/interface-standard.md](references/interface-standard.md). It owns the shared interface standard; the guide's writing, figures, and evidence rules remain here. Reuse the host website's verified tokens and installed components instead of introducing another visual system.
+
+Use the installed **studio** skill to author, organize, and register content in **bb Drive**. Drive is a destination and content workflow; it does not replace this guide renderer. A request for ChatGPT Pages is a different destination and uses its own installed tools. Preserve the user's named destination.
+
+Use **interface-design** for a workspace, portal, or dashboard. It can reuse the guide build and figure runtime when a standalone file is required; do not impose a teaching skeleton, quiz, or explanatory figure on an interface. Use this skill for an explanatory guide inside that workspace. The user's requested form takes precedence over the default skeleton.
+
+For guides with a section sidebar, apply [the shared sidebar standard](references/sidebar-standard.md). Use the actual installed Pro Docs Article navigation and its project-owned bundler; preserve the one-file guide and all figure controls. Default to compact desktop rows and group spacing, with larger touch targets in the contents dialog and on coarse-pointer devices.
 
 ## Workflow
 
@@ -74,7 +83,7 @@ node <guide-skill>/scripts/build.mjs <guide-directory> --bb
 GUIDE_BB=1 node <guide-skill>/scripts/build.mjs <guide-directory>
 ```
 
-`GUIDE_NO_BB=1` remains accepted as a no-op. The live probe still follows bb when the finished page opens inside it. The PASS line names the default and the reason. The build inlines themes, runtime, controls, guide styles, optional `data.js`, optional `figures.shared.js`, and `guide.js`. It does not inline fonts; an offline page uses the system fallback.
+`GUIDE_NO_BB=1` remains accepted as a no-op. The live probe still follows bb when the finished page opens inside it. The PASS line names the default and the reason. The build inlines themes, runtime, controls, guide styles, optional `data.js`, optional `figures.shared.js`, and `guide.js`. It inlines licensed Manrope with its OFL notice; other font roles keep system fallbacks offline.
 
 ### 7. Verify
 

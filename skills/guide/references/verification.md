@@ -8,7 +8,7 @@ Run the nearest affected check after each change. Run the full sequence before d
 node <guide-skill>/scripts/build.mjs <guide-directory>
 ```
 
-The JSON PASS line must report `theme.defaultTheme: null` and `theme.defaultReason: "published build: no baked default"` for a plain build. It also reports that fonts are not inlined and use the system fallback offline. The output must contain no placeholder.
+The JSON PASS line must report `theme.defaultTheme: null` and `theme.defaultReason: "published build: no baked default"` for a plain build. It also reports that Manrope is inlined under OFL and other font roles keep offline system fallbacks. The output must contain no placeholder.
 
 Check explicit bb selection separately when the guide will use it:
 

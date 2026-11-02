@@ -43,14 +43,17 @@ const sharedFigureFile = join(directory, "figures.shared.js");
 const dataFile = join(directory, "data.js");
 const sharedFigureScript = existsSync(sharedFigureFile) ? read(sharedFigureFile) : "";
 const dataScript = existsSync(dataFile) ? read(dataFile).replace(/^\s*export\s+/gm, "") : "";
-const guideScript = [visuals.highlighter, visuals.flow, dataScript, sharedFigureScript, read(scriptFile)].filter(Boolean).join("\n\n");
+const guideScript = [visuals.highlighter, visuals.flow, read(join(guideRoot, "assets", "document-navigation.js")), dataScript, sharedFigureScript, read(scriptFile)].filter(Boolean).join("\n\n");
 // The highlighter only defines AV.enhanceCode; a guide calls it once the page is parsed.
 const enhanceCall = visuals.highlighter ? "\n\nif (window.AV && typeof AV.enhanceCode === \"function\") AV.enhanceCode();" : "";
 const guideScriptWithCode = guideScript + enhanceCall;
+const documentFont = readFileSync(join(guideRoot, "assets", "fonts", "manrope-variable.woff2")).toString("base64");
+const documentFontLicense = read(join(guideRoot, "assets", "fonts", "manrope-OFL.txt"));
+const documentFontCss = `/* ${documentFontLicense.replaceAll("*/", "* /")} */\n@font-face{font-family:Manrope;src:url(data:font/woff2;base64,${documentFont}) format("woff2");font-style:normal;font-weight:200 800;font-display:swap}`;
 const replacements = {
   THEMES: layer.css,
   RUNTIME: visuals.runtime,
-  COMPONENTS: read(join(guideRoot, "assets", "components.css")),
+  COMPONENTS: [documentFontCss, read(join(guideRoot, "assets", "components.css")), read(join(guideRoot, "assets", "document-ui.css"))].join("\n"),
   PAGE_CSS: existsSync(join(directory, "page.css")) ? read(join(directory, "page.css")) : "",
   GUIDE_JS: guideScriptWithCode,
 };
@@ -71,5 +74,5 @@ console.log(JSON.stringify({
   bytes: Buffer.byteLength(html),
   visuals: { source: found.source, root: found.path, highlighter: visuals.highlighterSource },
   theme: { defaultTheme: layer.defaultTheme, defaultReason, picker: Boolean(layer.pickerHtml), script: Boolean(layer.script) },
-  fonts: "not inlined; system fallback is used offline",
+  fonts: "Manrope inlined under OFL; other font roles use system fallbacks offline",
 }));
