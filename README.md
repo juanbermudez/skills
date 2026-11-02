@@ -4,8 +4,11 @@ Agent skills by Juan Bermudez, one folder each under `skills/`, with a site per 
 
 | Skill | What it does | Site |
 |---|---|---|
-| [animated-visuals](skills/animated-visuals/) | Interactive, animated figures and diagrams for papers, articles, explainers and sites: flows with packets, stepped mechanisms, timelines, explorable charts, 27 themes. | [juanbermudez.github.io/skills/animated-visuals](https://juanbermudez.github.io/skills/animated-visuals/) |
-| [guide](skills/guide/) | One self-contained HTML guide for a topic, paper, codebase or decision, with practical writing, source checks and live figures. | [juanbermudez.github.io/skills/guide](https://juanbermudez.github.io/skills/guide/) |
+| [animated-visuals](skills/animated-visuals/) | Figures and diagrams built the stageshow way, plus a runtime for explorable figures: scrubbable timelines, drag handles, explorable charts, 27 themes. | [juanbermudez.github.io/skills/animated-visuals](https://juanbermudez.github.io/skills/animated-visuals/) |
+| [guide](skills/guide/) | One self-contained HTML guide for a topic, paper, codebase or decision, with practical writing, source checks, and figures built the stageshow way. | [juanbermudez.github.io/skills/guide](https://juanbermudez.github.io/skills/guide/) |
+| [plan-work](skills/plan-work/) | Plans with a decision, evidence, staged work and stageshow visuals, published as a bb Drive doc. Works with Claude Code plan mode. | — |
+
+Figures in `animated-visuals`, `guide` and `plan-work` follow [stageshow](https://github.com/benjitaylor/skills) (`npx skills add benjitaylor/skills --skill stageshow -g`, then `npm install` in its folder).
 
 ## Install one skill
 

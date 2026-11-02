@@ -3,7 +3,7 @@
   "owner": {
     "name": "Juan Bermudez"
   },
-  "description": "Juan Bermudez's agent skills: animated visuals and guides.",
+  "description": "Juan Bermudez's agent skills: animated visuals, guides and plans.",
   "plugins": [
     {
       "name": "animated-visuals",
@@ -13,7 +13,7 @@
       "skills": [
         "./skills/animated-visuals"
       ],
-      "description": "Interactive, animated figures and diagrams for papers, articles and sites, with 27 swappable themes."
+      "description": "Figures and diagrams built the stageshow way, plus a runtime for explorable figures, with 27 swappable themes."
     },
     {
       "name": "guide",
@@ -26,7 +26,21 @@
       "dependencies": [
         "animated-visuals"
       ],
-      "description": "One self-contained HTML guide for a topic, paper, codebase or decision, with practical writing and live figures."
+      "description": "One self-contained HTML guide for a topic, paper, codebase or decision, with practical writing and figures built the stageshow way."
+    },
+    {
+      "name": "plan-work",
+      "source": "./",
+      "strict": false,
+      "version": "0.1.0",
+      "skills": [
+        "./skills/plan-work"
+      ],
+      "dependencies": [
+        "guide",
+        "animated-visuals"
+      ],
+      "description": "Plans published as bb Drive docs with embedded stageshow visuals; works with Claude Code plan mode."
     }
   ]
 }
