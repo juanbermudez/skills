@@ -1,29 +1,51 @@
 ---
 name: animated-visuals
-description: Design and build polished, minimal, interactive and animated visualizations and diagrams for papers, articles, explainers and sites — explorable charts (hand-built or nivo), stepped mechanism diagrams, animated system/agent architecture flows, one-clock timelines, particle and flow fields, and WebGL / react-three-fiber scenes with depth-of-field focus. Styles are swappable themes (Default, Notebook and 23 Omarchy palettes such as Tokyo Night, Catppuccin, Gruvbox, Nord). Every figure is programmable (play, seek, step, set parameters, link prose). Use when asked to visualize data or a paper's findings, explain a mechanism or architecture visually, make a figure interactive or animated, build charts for a React/Next.js site, theme figures, or polish figures that look generic. Not for full lessons (use teach-me) or static branded diagrams with no interaction (diagram-design is faster).
+description: Design and build polished, minimal, animated and interactive figures and diagrams for guides, plans, papers, articles and sites, the stageshow way. Every figure is planned, framed and rehearsed with stageshow's method and built as a stageshow Stage by default (flows through a system, mechanisms told step by step, values that change, charts that draw in, product screens); this skill adds the claim discipline, data honesty and the choice of interaction, and its own runtime (explorable charts, scrubbable timelines, drag handles, particle fields, WebGL, 27 themes) for figures the reader must operate. Use when asked to visualize data or a finding, explain a mechanism or architecture visually, make a figure interactive or animated, theme figures, or polish figures that look generic. Not for full lessons (use teach-me).
 ---
 
 # Animated Visuals
 
-Every figure proves one claim, is minimal and on-brand, moves only to show a process or lead the eye, can be explored by the reader and driven by code, and is verified in a real browser.
+Every figure proves one claim, reads at a glance, moves only when something causes it to, and is filmed and read frame by frame before anyone sees it.
+
+## Stageshow first
+
+**stageshow** is the method for every figure, and its `Stage` is the default medium. Read stageshow's `SKILL.md` before the first figure and follow its workflow; this skill does not restate it. What this skill adds:
+
+- **The claim.** One sentence per figure, no codenames; cut any figure a sentence would replace (`references/content-design.md`).
+- **Data honesty.** Every number is computed, agrees with the prose, and is labelled when it is simulated, scaled or illustrative (`references/charts.md`).
+- **The interaction decision.** Whether the reader watches or operates the figure (`references/interaction.md`).
+- **Explorable figures.** This skill's own runtime, for figures the reader must operate.
+
+| The reader needs to | Build |
+|---|---|
+| Watch a flow through a system, a mechanism step by step, a sequence of events | stageshow stage without a cursor. Gold: `payout-flow`, `subscriptions`, `choreography`, `story` |
+| See a value change and what it feeds | stageshow stage with `Count` and `Roll`. Gold: `table-edit` |
+| Read a chart that draws in, or follow a hairline to a value | stageshow stage with `Chart`. Gold: `chart-scrub` |
+| See parts called out | stageshow stage with leaders and dimensions. Gold: `annotations`, `panel-annotation` |
+| See a product screen or how someone uses it | stageshow stage, still or with a cursor. Gold: the closest in stageshow's table |
+| Change the input the claim depends on: drag a handle, scrub a timeline, set a parameter | explorable figure with this skill's runtime |
+| See a large dataset, a physics or particle field, a 3D scene | this skill's runtime (`references/charts.md`, `references/webgl.md`) |
+
+A loop the reader watches is a stage. A control the reader moves is an explorable. When in doubt, build the stage: a stage that tells the story beats an explorable nobody touches.
 
 ## Workflow
 
-1. **Claims first, from first principles.** Name each figure's purpose (flow through a system, timeline, mechanism, results, dependence, relationships, activity, paths, comparison…), reduce it to primitives (actors, objects, events, states, quantities, relations) and write its claim in one sentence with no codenames: `references/content-design.md`. Cut any figure a sentence would replace. Pick the granularity a stranger can follow and plan tips for every non-obvious part.
-2. **Pick the writing style.** Practical by default (`references/writing/practical.md`); academic only when asked or when the host is a paper (`references/writing/academic.md`). Styles are modular (`references/writing/README.md`). Keep every label, caption and tip within the copy budget.
-3. **Find the interaction.** For each claim, decide what the reader should be able to do to understand it faster (scrub time, step a mechanism, drag the parameter the claim depends on, point at a part, compare on one axis). Pick the lowest rung of the interaction ladder that answers it: `references/interaction.md`.
-4. **Form and medium.** `references/choosing-form.md` (SVG, canvas, WebGL, nivo).
-5. **Theme.** Inside a host site, map `--fs-*` tokens to its variables (`themes/site-bridge.css` is a worked example). Otherwise the `default` theme applies: calm, monochrome, ink as the accent; the notebook and Omarchy themes are one attribute away. Never hard-code colors: `references/theming.md`, `references/art-direction.md`.
-6. **Build.**
-   - Standalone page or Artifact: copy `assets/plate-template.html` (themes + `FS` runtime inlined, four working demos: stepped SVG flow with linked prose, one-clock timeline with a physics time scrubber and a computed counterfactual bracket, explorable chart with a scrubbable number and a settings popover, curl-noise field with a draggable, resizable focus; theme menu top right). To change shared layers, edit `assets/plate-src.html`, `themes/*` or `assets/runtime/fs-runtime.js` and run `node scripts/build-template.mjs`.
-   - React / Next.js: `assets/react/` (see its README): `useFigure`, `FigurePlate`, `FlowDiagram`, `ExplorableLine` (nivo), `FocusField` (R3F).
-   - Domain guides: `references/diagram-types.md` (the 27 types and 7 semantic patterns: what moves, what the reader can do), `references/diagrams.md`, `references/charts.md`, `references/webgl.md`, `references/motion.md`.
-7. **Critique, then refine.** Look at the render; name what is weak (clutter, no focal point, unlabeled mark, a number that disagrees, motion that decorates, a control nobody needs). Fix one concern at a time; two passes minimum.
-8. **Verify.** Every state, default theme in both modes plus one dark and one light Omarchy theme, 1440 and 390 widths, reduced motion, keyboard, console, programmatic control from the console, measured frame times: `references/verification.md`. Capture stills and short clips for anything that moves.
-9. **Deliver.** A page for others is published as an Artifact (load `artifact-design` first) or saved where asked. Report what was verified and what was not.
-10. **Optional lint.** In a TypeScript project with several figures, offer to set up Konsistent so every figure declares its claim, status, sources and tips: `references/konsistent.md`. Ask before installing.
+**For a diagram** (architecture, flow through a system, mechanism, sequence, state change, before and after), follow [references/diagram-method.md](references/diagram-method.md): stageshow's method mapped onto diagrams, starting with a written plan block. For other figures, stageshow's steps with this skill's additions in place:
 
-## Quality bar
+1. **Claim.** Write each figure's claim in one sentence and its primitives (actors, objects, events, states, quantities): `references/content-design.md`.
+2. **Medium and place.** Where it sits, the size it is seen at, still, once, loop or explorable, and its compact design for a phone column (stageshow step 1). Pick stage or explorable with the table above.
+3. **Look.** Map the host's real tokens once to stageshow's `--ss-*` look file, and to `--fs-*` from the same source when the page also has explorables (stageshow `references/looks.md`, this skill's `references/theming.md`). Never invent a palette.
+4. **Story.** Three to five beats and a payoff; no motion without a cause; data never rewinds in view without a cause (stageshow `references/motion.md`). For an explorable, the one interaction from the ladder that answers the claim (`references/interaction.md`).
+5. **Start from a gold example.** Film the closest stageshow gold and copy it; keep its stage size, crop, type sizes and beats, then make it say your claim. For an explorable, copy the closest demo in `assets/plate-template.html` (or `assets/react/`) and hold it to the same gold bar.
+6. **Restraint.** Real words only on what the claim is about, three to seven strings; quiet filler or nothing elsewhere; one focal element; context dims, never disappears (stageshow `references/craft.md`).
+7. **Build and choreograph.** Stage: kit parts and the `Act` script. Explorable: `FS` runtime, one clock, programmable (`references/diagrams.md`, `references/motion.md`).
+8. **Rehearse.** Poster frame first. Stage: `film.mjs --states --gate` at the shown width and at 390, then read every frame. Explorable: the contact sheets and per-state captures in `references/verification.md`, read the same way. Fix framing, then hierarchy, then motion, then polish; then stageshow's fresh-eye review.
+9. **Deliver.** Inside a guide, follow the guide skill's `references/stages.md`; stand-alone, a page registered where the user asked. Report the gold you copied, what you changed, and what was not verified.
+
+## Quality bar for explorable figures
+
+Stageshow's quality bar applies to every figure. These rules add to it for figures built on this skill's runtime.
+
 
 - One claim per figure, stated in its title; caption says what is simulated, scaled or sourced.
 - Minimal and on-brand: the site's frame and type; mostly empty stage; one focal element; context dims to `--fs-dim`, never disappears.
@@ -47,6 +69,7 @@ Every figure proves one claim, is minimal and on-brand, moves only to show a pro
 
 | File | Owns |
 |---|---|
+| `references/diagram-method.md` | diagrams the stageshow way: the plan block, story shapes, gold examples to copy, composition, restraint, rehearsal checks, recurring faults |
 | `references/content-design.md` | purpose taxonomy, primitives, granularity, the cold reader test, copy budget, tips plan |
 | `references/writing/` | writing styles (practical default, academic on request) and how to add one |
 | `references/interaction.md` | finding the interaction, the ladder, patterns, controls (handles, sliders, settings, timeline surface, tips, expand, stable layout, buttons), feel, the `FS` API, input parity, anti-patterns |
@@ -78,4 +101,4 @@ Every figure proves one claim, is minimal and on-brand, moves only to show a pro
 
 ## Related skills
 
-`teach-me` (whole lessons and videos), `diagram-design` (static branded diagrams), `dataviz` (chart color validation), `interface-design` (UI around the figures), `artifact-design` (publishing a page).
+`stageshow` (the method for every figure and the default medium), `guide` (figures inside a guide, `references/stages.md`), `teach-me` (whole lessons and videos), `diagram-design` (static branded diagrams), `dataviz` (chart color validation), `interface-design` (UI around the figures), `artifact-design` (publishing a page).

@@ -3,6 +3,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { findVisualsRoot, loadVisuals } from "./find-visuals.mjs";
+import { buildGuideStages } from "./stage.mjs";
 import { themeLayer } from "./theme-layer.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -47,15 +48,16 @@ const guideScript = [visuals.highlighter, visuals.flow, read(join(guideRoot, "as
 // The highlighter only defines AV.enhanceCode; a guide calls it once the page is parsed.
 const enhanceCall = visuals.highlighter ? "\n\nif (window.AV && typeof AV.enhanceCode === \"function\") AV.enhanceCode();" : "";
 const guideScriptWithCode = guideScript + enhanceCall;
+const stages = await buildGuideStages(directory);
 const documentFont = readFileSync(join(guideRoot, "assets", "fonts", "manrope-variable.woff2")).toString("base64");
 const documentFontLicense = read(join(guideRoot, "assets", "fonts", "manrope-OFL.txt"));
 const documentFontCss = `/* ${documentFontLicense.replaceAll("*/", "* /")} */\n@font-face{font-family:Manrope;src:url(data:font/woff2;base64,${documentFont}) format("woff2");font-style:normal;font-weight:200 800;font-display:swap}`;
 const replacements = {
   THEMES: layer.css,
   RUNTIME: visuals.runtime,
-  COMPONENTS: [documentFontCss, read(join(guideRoot, "assets", "components.css")), read(join(guideRoot, "assets", "document-ui.css"))].join("\n"),
+  COMPONENTS: [documentFontCss, read(join(guideRoot, "assets", "components.css")), read(join(guideRoot, "assets", "document-ui.css")), stages.css].join("\n"),
   PAGE_CSS: existsSync(join(directory, "page.css")) ? read(join(directory, "page.css")) : "",
-  GUIDE_JS: guideScriptWithCode,
+  GUIDE_JS: [guideScriptWithCode, stages.js].filter(Boolean).join("\n\n"),
 };
 
 let html = source;
@@ -74,5 +76,6 @@ console.log(JSON.stringify({
   bytes: Buffer.byteLength(html),
   visuals: { source: found.source, root: found.path, highlighter: visuals.highlighterSource },
   theme: { defaultTheme: layer.defaultTheme, defaultReason, picker: Boolean(layer.pickerHtml), script: Boolean(layer.script) },
+  stages: stages.names,
   fonts: "Manrope inlined under OFL; other font roles use system fallbacks offline",
 }));

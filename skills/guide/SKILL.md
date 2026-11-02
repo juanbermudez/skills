@@ -2,7 +2,7 @@
 name: guide
 description: Create one self-contained HTML guide that explains a topic, paper, codebase, or decision in plain practical language with verified claims and live figures. Use it for a durable explanation or reference-quality walkthrough; for lessons, video or teaching from scratch use teach-me; guide explains, in a practical voice, in one file.
 license: MIT
-metadata: { author: Juan Bermudez, version: 0.2.0, requires: animated-visuals }
+metadata: { author: Juan Bermudez, version: 0.3.0, requires: stageshow animated-visuals }
 ---
 
 # Guide
@@ -60,13 +60,9 @@ Follow [references/writing.md](references/writing.md). Put the point first. Use 
 
 ### 5. Make figures
 
-For each claim a sentence cannot carry, load the **animated-visuals** skill by name and follow its workflow. If that skill is unavailable, stop and print:
+Figures follow **stageshow**'s method: plan the place, the focal object, the action and the payoff before any code; start from its closest gold example; real words only on what the claim is about; frame with intent; every motion has a cause; set the poster frame first; film and read every frame. Build each figure as a stageshow stage unless the reader must operate it, with [references/stages.md](references/stages.md), styled from the host's real tokens. Plan every diagram with the plan block in animated-visuals' `references/diagram-method.md` before building it.
 
-```sh
-npx skills@latest add juanbermudez/skills --skill animated-visuals -g
-```
-
-Make the figure title its claim. Name every labelled part in the prose. Add interaction only when the reader must change the input the claim depends on. Use [references/layout.md](references/layout.md) and [references/components.md](references/components.md) for the page around each plate.
+Only when the reader must change the input the claim depends on (drag, scrub, set a parameter), or the figure is a large dataset, a field or a 3D scene, load **animated-visuals** and build an explorable figure, still planned, framed and reviewed the stageshow way. Make the figure title its claim and name every labelled part in the prose. Use [references/layout.md](references/layout.md) and [references/components.md](references/components.md) for the page around each plate.
 
 ### 6. Build
 
@@ -83,7 +79,7 @@ node <guide-skill>/scripts/build.mjs <guide-directory> --bb
 GUIDE_BB=1 node <guide-skill>/scripts/build.mjs <guide-directory>
 ```
 
-`GUIDE_NO_BB=1` remains accepted as a no-op. The live probe still follows bb when the finished page opens inside it. The PASS line names the default and the reason. The build inlines themes, runtime, controls, guide styles, optional `data.js`, optional `figures.shared.js`, and `guide.js`. It inlines licensed Manrope with its OFL notice; other font roles keep system fallbacks offline.
+`GUIDE_NO_BB=1` remains accepted as a no-op. The live probe still follows bb when the finished page opens inside it. The PASS line names the default and the reason. The build inlines themes, runtime, controls, guide styles, optional `data.js`, optional `figures.shared.js`, `guide.js`, and every stageshow stage in `stages/*.tsx`. It inlines licensed Manrope with its OFL notice; other font roles keep system fallbacks offline.
 
 ### 7. Verify
 
@@ -104,6 +100,7 @@ A guide is not a lesson, slide deck, or dashboard. Do not use hooks, eyebrows, o
 - [references/writing.md](references/writing.md) — voice, sentences, captions, steps, and endings.
 - [references/layout.md](references/layout.md) — measures, responsive behavior, type, rhythm, and surfaces.
 - [references/components.md](references/components.md) — component markup and optional shared figure code.
+- [references/stages.md](references/stages.md) — figures as stageshow stages: picking the medium, the host's look, writing, placing, stand-alone pages, and rehearsal.
 - [references/verification.md](references/verification.md) — commands, browser proof, audits, artifacts, and reader testing.
 - [references/reader-test.md](references/reader-test.md) — prompt and isolated-reader setup.
 - [references/sources.md](references/sources.md) — sources behind the guide rules.
